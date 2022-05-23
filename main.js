@@ -3,18 +3,27 @@ const background = document.querySelector(".background");
 const playground = document.querySelector(".playground");
 const timer = document.querySelector(".sign-timer");
 const startBtn = document.querySelector(".sign-start");
-const audio = new Audio("./sound/bg.mp3");
+const bgAudio = new Audio("./sound/bg.mp3");
+const defaultTime = 5;
 
-const startButton = () => {
-  if (startBtn.classList.contains("stop")) {
-    startBtn.classList.remove("stop");
-    audio.play();
+let isStart = false;
+let isPlay = false;
+let intervalId = null;
+let countOfTimer = defaultTime;
+
+const playbtn = () => {
+  if (countOfTimer === defaultTime) {
+    isStart = true;
+  }
+  if (isPlay === false) {
+    isPlay = true;
+    bgAudio.play();
     startBtn.innerHTML = `
-                  <i class="fa-solid fa-stop"></i>
-                  `;
+                          <i class="fa-solid fa-stop"></i>
+                        `;
   } else {
-    startBtn.classList.add("stop");
-    audio.pause();
+    isPlay = false;
+    bgAudio.pause();
     startBtn.innerHTML = `
                   <i class="fa-solid fa-play"></i>
                   `;
@@ -22,34 +31,56 @@ const startButton = () => {
 };
 
 const timerCount = () => {
-  let count = 10;
-  if (!startBtn.classList.contains("stop")) {
-    const counter = setInterval(() => {
-      if (count >= 10) {
-        timer.innerHTML = `00:${count}`;
-      } else if (count < 10 && count >= 0) {
-        timer.innerHTML = `00:0${count}`;
+  if (isPlay === true) {
+    intervalId = setInterval(() => {
+      if (countOfTimer >= 10) {
+        timer.innerHTML = `00:${countOfTimer--}`;
+      } else if (countOfTimer < 10 && countOfTimer > 0) {
+        timer.innerHTML = `00:0${countOfTimer--}`;
       } else {
-        clearInterval(counter);
+        timer.innerHTML = `00:0${countOfTimer}`;
+        bgAudio.pause();
+        isStart = false;
+        clearInterval(intervalId);
       }
-      count--;
     }, 1000);
   } else {
-    clearInterval(counter);
+    clearInterval(intervalId);
   }
-
-  return count;
 };
 
-// const timeCount = setInterval({}, 1000);
+const displayImg = () => {
+  if (isStart === true) {
+    for (let i = 0; i < 10; i++) {
+      createImgBug();
+      createImgCarrot();
+    }
+    isStart = false;
+  }
+};
+
+const createImgBug = () => {
+  const imgBug = document.createElement("img");
+  imgBug.setAttribute("src", "./img/bug.png");
+  imgBug.setAttribute("class", "bug");
+  playground.append(imgBug);
+};
+
+const createImgCarrot = () => {
+  const imgCarrot = document.createElement("img");
+  imgCarrot.setAttribute("src", "./img/carrot.png");
+  imgCarrot.setAttribute("class", "carrot");
+  playground.append(imgCarrot);
+};
 
 startBtn.addEventListener("click", (event) => {
-  startButton();
+  playbtn();
   timerCount();
+  displayImg();
 });
 
-const imgBug = document.createElement("img");
-imgBug.setAttribute("src", "./img/bug.png");
-const imgCarrot = document.createElement("img");
-imgCarrot.setAttribute("src", "./img/carrot.png");
-playground.append(imgBug, imgCarrot);
+playground.addEventListener("click", () => {
+  console.log("click");
+  const imgg = document.querySelector("img");
+  imgg.classList.add("inactive");
+});
