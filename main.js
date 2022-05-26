@@ -4,12 +4,22 @@ const playground = document.querySelector(".playground");
 const timer = document.querySelector(".sign-timer");
 const startBtn = document.querySelector(".sign-start");
 const signCounter = document.querySelector(".sign-counter");
+
 const bgAudio = new Audio("./sound/bg.mp3");
+const bugPullAudio = new Audio("./sound/bug_pull.mp3");
+const carrotPullAudio = new Audio("./sound/carrot_pull.mp3");
+const alertAudio = new Audio("./sound/alert.wav");
+const winAudio = new Audio("./sound/game_win.mp3");
+
+// bugPullAudio.play();
+// carrotPullAudio.play();
+// alertAudio.play();
+// winAudio.play();
 
 let isStart = false;
 let isPlay = false;
 let intervalId = null;
-let noOfCarrot = null;
+let noOfCarrot = 10;
 
 playground.style.height = `${playground.getBoundingClientRect().height - 50}px`;
 playground.style.width = `${playground.getBoundingClientRect().width - 50}px`;
@@ -30,7 +40,7 @@ const playbtn = () => {
     startBtn.innerHTML = `
                   <i class="fa-solid fa-play"></i>
                   `;
-    signCounter.innerHTML = `10`;
+    signCounter.innerHTML = `${noOfCarrot}`;
   }
 };
 
@@ -44,9 +54,11 @@ const timerCount = () => {
         timer.innerHTML = `00:0${countOfTimer--}`;
       } else {
         timer.innerHTML = `00:0${countOfTimer}`;
-        bgAudio.pause();
-        isStart = false;
+        bgAudio.load();
+        alertAudio.play();
         clearInterval(intervalId);
+        alert("실패");
+        resetGame();
       }
     }, 1000);
   } else {
@@ -55,7 +67,6 @@ const timerCount = () => {
 };
 
 const displayImg = () => {
-  noOfCarrot = 10;
   for (let i = 0; i < 10; i++) {
     createImgBug(i);
     createImgCarrot(i);
@@ -81,6 +92,10 @@ const createImgBug = (id) => {
   imgBug.style.top = `${top}%`;
   imgBug.style.left = `${left}%`;
 
+  imgBug.addEventListener("click", () => {
+    bugPullAudio.play();
+  });
+
   // imgBug.style.transform = "translateX(-50%)";
 };
 
@@ -98,8 +113,27 @@ const createImgCarrot = (id) => {
 
   imgCarrot.addEventListener("click", () => {
     imgCarrot.classList.add("inactive");
+    carrotPullAudio.play();
     signCounter.innerHTML = `${--noOfCarrot}`;
+    if (noOfCarrot === 0) {
+      clearInterval(intervalId);
+      bgAudio.load();
+      winAudio.play();
+      alert("성공");
+      resetGame();
+    }
   });
+};
+
+const resetGame = () => {
+  startBtn.innerHTML = `
+                  <i class="fa-solid fa-play"></i>
+                  `;
+  noOfCarrot = 10;
+  signCounter.innerHTML = `${noOfCarrot}`;
+  timer.innerHTML = `시작`;
+  isPlay === false;
+  deleteImg();
 };
 
 startBtn.addEventListener("click", (event) => {
