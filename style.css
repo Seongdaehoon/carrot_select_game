@@ -8,7 +8,7 @@ body {
   background-color: black;
 }
 .background {
-  position: relative;
+  /* position: relative; */
   background-image: url(./img/background.png);
   background-position: center;
   background-repeat: no-repeat;
@@ -28,11 +28,11 @@ body {
 }
 
 .playground {
-  /* position: absolute; */
-  background-color: rgba(255, 0, 0, 0.5);
-  top: 50%;
+  position: relative;
+  background-color: transparent;
   height: 50%;
   width: 100%;
+  /* overflow: hidden; */
 }
 
 .sign-start {
@@ -68,4 +68,11 @@ body {
 }
 .inactive {
   display: none;
+}
+
+.bug,
+.carrot {
+  position: absolute;
+  height: 50px;
+  width: 50px;
 }
