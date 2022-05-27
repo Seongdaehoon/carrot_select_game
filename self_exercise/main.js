@@ -5,11 +5,11 @@ const timer = document.querySelector(".sign-timer");
 const startBtn = document.querySelector(".sign-start");
 const signCounter = document.querySelector(".sign-counter");
 
-const bgAudio = new Audio("./sound/bg.mp3");
-const bugPullAudio = new Audio("./sound/bug_pull.mp3");
-const carrotPullAudio = new Audio("./sound/carrot_pull.mp3");
-const alertAudio = new Audio("./sound/alert.wav");
-const winAudio = new Audio("./sound/game_win.mp3");
+const bgAudio = new Audio("../sound/bg.mp3");
+const bugPullAudio = new Audio("../sound/bug_pull.mp3");
+const carrotPullAudio = new Audio("../sound/carrot_pull.mp3");
+const alertAudio = new Audio("../sound/alert.wav");
+const winAudio = new Audio("../sound/game_win.mp3");
 
 // bugPullAudio.play();
 // carrotPullAudio.play();
@@ -82,7 +82,7 @@ const deleteImg = () => {
 
 const createImgBug = (id) => {
   const imgBug = document.createElement("img");
-  imgBug.setAttribute("src", "./img/bug.png");
+  imgBug.setAttribute("src", "../img/bug.png");
   imgBug.setAttribute("class", "bug");
   imgBug.setAttribute("data-id", `${id}`);
   playground.append(imgBug);
@@ -101,7 +101,7 @@ const createImgBug = (id) => {
 
 const createImgCarrot = (id) => {
   const imgCarrot = document.createElement("img");
-  imgCarrot.setAttribute("src", "./img/carrot.png");
+  imgCarrot.setAttribute("src", "../img/carrot.png");
   imgCarrot.setAttribute("class", "carrot");
   imgCarrot.setAttribute("data-id", `${id}`);
   playground.append(imgCarrot);

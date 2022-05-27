@@ -3,26 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fun Game</title>
 
     <link rel="stylesheet" href="./style.css" />
-    <script src="./main.js" defer></script>
-
+    <script type="module" src="./src/main.js" defer></script>
     <script
       src="https://kit.fontawesome.com/cd4d636144.js"
       crossorigin="anonymous"
     ></script>
-    <title>Carrot Pick-up Game</title>
   </head>
   <body>
-    <div class="background">
-      <div class="sign">
-        <button type="button" class="sign-start stop">
-          <i class="fa-solid fa-play"></i>
+    <section class="game">
+      <header class="game__header">
+        <button class="game__button">
+          <i class="fas fa-play"></i>
         </button>
-        <div class="sign-timer">시작</div>
-        <div class="sign-counter">10</div>
-      </div>
-      <div class="playground"></div>
-    </div>
+        <span class="game__timer">0:0</span>
+        <span class="game__score">9</span>
+      </header>
+      <section class="game__field"></section>
+    </section>
+    <section class="pop-up pop-up--hide">
+      <button class="pop-up__refresh">
+        <i class="fas fa-redo"></i>
+      </button>
+      <span class="pop-up__message">Hello</span>
+    </section>
   </body>
 </html>

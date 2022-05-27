@@ -1,0 +1,78 @@
+/* style.css */
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+}
+.background {
+  /* position: relative; */
+  background-image: url(./img/background.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 10vh auto;
+  width: 75vw;
+  height: 75vh;
+  border-radius: 20px;
+}
+
+.sign {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.playground {
+  position: relative;
+  background-color: transparent;
+  height: 50%;
+  width: 100%;
+  /* overflow: hidden; */
+}
+
+.sign-start {
+  display: block;
+  font-size: 30px;
+  padding: 10px 15px;
+  border: 4px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.sign-timer {
+  background-color: white;
+  font-size: 30px;
+  margin-top: 5px;
+  padding: 0px 15px;
+  border: 4px solid black;
+  border-radius: 10px;
+}
+
+.sign-counter {
+  font-size: 30px;
+  text-align: center;
+  line-height: 50px;
+  margin-top: 5px;
+  background-color: coral;
+  color: white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: 4px solid black;
+}
+.inactive {
+  display: none;
+}
+
+.bug,
+.carrot {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+}

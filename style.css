@@ -1,78 +1,109 @@
-/* style.css */
-* {
-  margin: 0;
-  box-sizing: border-box;
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 body {
   background-color: black;
+  text-align: center;
 }
-.background {
-  /* position: relative; */
-  background-image: url(./img/background.png);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin: 10vh auto;
-  width: 75vw;
-  height: 75vh;
+.game {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  height: 500px;
+  background: url(../img/background.png) center/cover;
+  margin: auto;
   border-radius: 20px;
 }
+.game__button {
+  width: 60px;
+  height: 60px;
+  background-color: wheat;
+  border: 4px solid black;
+  font-size: 24px;
+  transition: all 300ms ease-in;
+}
 
-.sign {
-  height: 50%;
-  width: 100%;
+.game__button:hover {
+  transform: scale(1.1);
+}
+
+.game__timer {
+  width: 100px;
+  background-color: white;
+  text-align: center;
+  border: 5px solid black;
+  border-radius: 20px;
+  font-size: 32px;
+  margin-top: 8px;
+  visibility: hidden;
+  user-select: none;
+  cursor: auto;
+}
+.game__score {
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  font-size: 38px;
+  margin-top: 8px;
+  background-color: darksalmon;
+  border: 3px solid black;
+  border-radius: 50%;
+  color: white;
+  visibility: hidden;
+}
+
+.game__header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
 }
 
-.playground {
+.game__field {
   position: relative;
-  background-color: transparent;
-  height: 50%;
   width: 100%;
-  /* overflow: hidden; */
+  height: 100%;
+  margin-top: 40px;
 }
 
-.sign-start {
-  display: block;
-  font-size: 30px;
-  padding: 10px 15px;
-  border: 4px solid black;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-top: 5px;
-}
-
-.sign-timer {
-  background-color: white;
-  font-size: 30px;
-  margin-top: 5px;
-  padding: 0px 15px;
-  border: 4px solid black;
-  border-radius: 10px;
-}
-
-.sign-counter {
-  font-size: 30px;
-  text-align: center;
-  line-height: 50px;
-  margin-top: 5px;
-  background-color: coral;
+.pop-up {
+  width: 400px;
+  height: 120px;
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  border: 4px solid black;
+  text-align: center;
+  padding: 20px;
+  margin: auto;
+  transform: translateY(-170%);
+  border-radius: 20px;
 }
-.inactive {
+
+.pop-up--hide {
   display: none;
 }
 
-.bug,
-.carrot {
-  position: absolute;
-  height: 50px;
-  width: 50px;
+.pop-up__refresh {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  background-color: wheat;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+.pop-up__message {
+  display: block;
+  font-size: 24px;
+}
+
+.carrot,
+.bug {
+  transition: all 100ms ease-in;
+}
+.carrot:hover,
+.bug:hover {
+  transform: scale(1.1);
 }
